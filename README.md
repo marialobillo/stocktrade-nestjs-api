@@ -1,3 +1,9 @@
+## Notes
+
+This is an update for my Stock-trade application. The first version was built using javascript on the frontend and backend, express.js, and react.js. Now, the second version im using nest.js and typescript.
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
