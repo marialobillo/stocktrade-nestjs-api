@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { Company } from './company.model';
 
 @Injectable()
 export class CompaniesService {
-    private companies = [];
+    private companies: Company[] = [];
 
-    getAllCompanies(){
-        return this.companies;
+    getAllCompanies(): Company[]{
+      return this.companies;
     }
 }
