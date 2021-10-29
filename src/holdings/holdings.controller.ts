@@ -8,7 +8,7 @@ export class HoldingsController {
     constructor(private holdingsService: HoldingsService){}
 
     @Get()
-    getAllHoldings(): Holding{
+    getAllHoldings(): Holding[] {
         return this.holdingsService.getAllHoldings();
     }
 }
