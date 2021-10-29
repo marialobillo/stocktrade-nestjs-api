@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { Holding } from './holding.model';
 
 @Injectable()
 export class HoldingsService {
 
-    private holdings = [];
+    private holdings: Holding[]  = [];
 
-    getAllHoldings(){
+    getAllHoldings(): Holding{
         return this.holdings;
     }
 }
