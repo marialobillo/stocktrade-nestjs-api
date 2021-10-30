@@ -1,3 +1,4 @@
+import { CreateCompanyDto } from './dto/create-company.dto';
 import { CompaniesService } from './companies.service';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Company } from './company.model';
@@ -13,9 +14,8 @@ export class CompaniesController {
 
   @Post()
   createCompany(
-    @Body('name') name: string, 
-    @Body('symbol') symbol: string,
+   @Body() createCompanyDto: CreateCompanyDto
   ): Company {
-    return this.companiesService.createCompany(name, symbol);
+    return this.companiesService.createCompany(createCompanyDto);
   }
 }

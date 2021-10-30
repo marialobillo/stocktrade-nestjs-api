@@ -1,3 +1,4 @@
+import { CreateCompanyDto } from './dto/create-company.dto';
 import { Injectable } from '@nestjs/common';
 import { Company } from './company.model';
 import { v4 as uuid } from 'uuid';
@@ -10,7 +11,9 @@ export class CompaniesService {
     return this.companies;
   }
 
-  createCompany(name: string, symbol: string): Company {
+  createCompany(createCompanyDto: CreateCompanyDto): Company {
+    const { name, symbol } = createCompanyDto;
+    
     const company: Company = {
       id: uuid(),
       name,
