@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Holding } from './holding.model';
 import { v4 as uuid } from 'uuid';
+import { CreateHoldingDto } from './dto/create-holding.dto';
 @Injectable()
 export class HoldingsService {
   private holdings: Holding[] = [];
@@ -9,13 +10,16 @@ export class HoldingsService {
     return this.holdings;
   }
 
-  createHolding(companyId: string, shares: number, priceBuy: number): Holding {
+  createHolding(createHoldingDto: CreateHoldingDto): Holding {
+    const { companyId, userId, shares, priceBuy } = createHoldingDto;
+
     const holding: Holding = {
       id: uuid(),
       companyId,
+      userId,
       shares,
       priceBuy,
-      dateBuy: now(),
+      dateBuy: new Date(),
       isActive: true,
       priceSell: 0,
       dateSell: null,
@@ -27,6 +31,3 @@ export class HoldingsService {
   }
 }
 
-function now(): Date {
-  throw new Error('Function not implemented.');
-}
