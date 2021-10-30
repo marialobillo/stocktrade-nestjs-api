@@ -1,5 +1,4 @@
-export interface Holding {
-  id: string;
+export class CreateHoldingDto {
   companyId: string;
   userId: string;
   shares: number;
