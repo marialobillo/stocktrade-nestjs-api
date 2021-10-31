@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { CreateHoldingDto } from './dto/create-holding.dto';
 import { Holding } from './holding.model';
 import { HoldingsService } from './holdings.service';
@@ -17,5 +17,10 @@ export class HoldingsController {
      @Body() createHoldingDto: CreateHoldingDto
     ): Holding {
       return this.holdingsService.createHolding(createHoldingDto);
+    }
+
+    @Get('/:id')
+    getHoldingById(@Param('id') id: string): Holding {
+      return this.holdingsService.getHoldingById(id);
     }
 }
