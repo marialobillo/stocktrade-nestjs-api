@@ -12,7 +12,6 @@ export class HoldingsService {
 
   createHolding(createHoldingDto: CreateHoldingDto): Holding {
     const { companyId, userId, shares, priceBuy } = createHoldingDto;
-
     const holding: Holding = {
       id: uuid(),
       companyId,
@@ -26,8 +25,11 @@ export class HoldingsService {
     };
 
     this.holdings.push(holding);
-
     return holding;
+  }
+
+  getHoldingById(id: string): Holding {
+    return this.holdings.find((holding) => holding.id === id);
   }
 }
 
