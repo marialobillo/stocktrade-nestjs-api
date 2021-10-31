@@ -13,7 +13,6 @@ export class CompaniesService {
 
   createCompany(createCompanyDto: CreateCompanyDto): Company {
     const { name, symbol } = createCompanyDto;
-    
     const company: Company = {
       id: uuid(),
       name,
@@ -21,7 +20,10 @@ export class CompaniesService {
     };
 
     this.companies.push(company);
-
     return company;
+  }
+
+  getCompanyById(id: string): Company {
+    return this.companies.find((company) => company.id === id);
   }
 }
