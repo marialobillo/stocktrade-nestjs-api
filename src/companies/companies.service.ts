@@ -59,7 +59,8 @@ export class CompaniesService {
   }
 
   deleteCompany(id: string): void {
-    this.companies = this.companies.filter(company => company.id !== id);
+    const found = this.getCompanyById(id);
+    this.companies = this.companies.filter(company => company.id !== found.id);
   }
 
   updateCompanyName(id: string, name: string): Company {

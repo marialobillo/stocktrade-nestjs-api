@@ -1,3 +1,4 @@
+import { UpdateCompanyNameDto } from './dto/update-company-name.dto';
 import { GetCompanyFilterDto } from './dto/get-company-filter.dto';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { CompaniesService } from './companies.service';
@@ -38,8 +39,9 @@ export class CompaniesController {
   @Patch('/:id/name')
   udpateCompanyName(
     @Param('id') id: string, 
-    @Body('name') name: string,
+    @Body() updateCompanyNameDto: UpdateCompanyNameDto,
   ): Company {
+    const { name } = updateCompanyNameDto;
     return this.companiesService.updateCompanyName(id, name);
   }
 }
