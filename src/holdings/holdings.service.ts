@@ -31,5 +31,9 @@ export class HoldingsService {
   getHoldingById(id: string): Holding {
     return this.holdings.find((holding) => holding.id === id);
   }
+
+  deleteHolding(id: string): void {
+    this.holdings = this.holdings.filter(holding => holding.id !== id);
+  }
 }
 
