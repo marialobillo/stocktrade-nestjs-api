@@ -1,6 +1,6 @@
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { CompaniesService } from './companies.service';
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { Company } from './company.model';
 
 @Controller('companies')
@@ -27,5 +27,13 @@ export class CompaniesController {
   @Delete('/:id')
   deleteCompany(@Param('id') id: string): void {
     return this.companiesService.deleteCompany(id);
+  }
+
+  @Patch('/:id/name')
+  udpateCompanyName(
+    @Param('id') id: string, 
+    @Body('name') name: string,
+  ): Company {
+    return this.companiesService.updateCompanyName(id, name);
   }
 }

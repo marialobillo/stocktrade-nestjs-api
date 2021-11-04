@@ -30,4 +30,10 @@ export class CompaniesService {
   deleteCompany(id: string): void {
     this.companies = this.companies.filter(company => company.id !== id);
   }
+
+  updateCompanyName(id: string, name: string): Company {
+    const company = this.getCompanyById(id);
+    company.name = name;
+    return company;
+  }
 }
