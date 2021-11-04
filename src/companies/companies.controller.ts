@@ -1,6 +1,7 @@
+import { GetCompanyFilterDto } from './dto/get-company-filter.dto';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { CompaniesService } from './companies.service';
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { Company } from './company.model';
 
 @Controller('companies')
@@ -8,8 +9,13 @@ export class CompaniesController {
   constructor(private companiesService: CompaniesService) {}
 
   @Get()
-  getAllCompanies(): Company[] {
-    return this.companiesService.getAllCompanies();
+  getCompanies(@Query() filterDto: GetCompanyFilterDto): Company[] {
+
+    if(Object.keys(filterDto).length){
+      return this.companiesService.getCompaniesWithFilters(filterDto);
+    } else {
+      return this.companiesService.getAllCompanies();
+    }
   }
 
   @Post()

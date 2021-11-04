@@ -1,3 +1,4 @@
+import { GetCompanyFilterDto } from './dto/get-company-filter.dto';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { Injectable } from '@nestjs/common';
 import { Company } from './company.model';
@@ -9,6 +10,30 @@ export class CompaniesService {
 
   getAllCompanies(): Company[] {
     return this.companies;
+  }
+
+  getCompaniesWithFilters(filterDto: GetCompanyFilterDto): Company[] {
+    const { name, search } = filterDto;
+
+    let companies = this.getAllCompanies();
+
+    // do with name
+    if(name){
+      companies = companies.filter(company => company.name === name);
+    }
+
+    // do with search
+    if(search){
+      companies = companies.filter(company => {
+        if(company.name.includes(search) || company.symbol.includes(search)){
+          return true;
+        }
+        return false;
+      });
+    }
+
+    // return result
+    return companies;
   }
 
   createCompany(createCompanyDto: CreateCompanyDto): Company {
