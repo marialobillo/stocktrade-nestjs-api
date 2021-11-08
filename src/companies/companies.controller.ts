@@ -3,6 +3,7 @@ import { GetCompanyFilterDto } from './dto/get-company-filter.dto';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { CompaniesService } from './companies.service';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Company } from './company.entity';
 
 @Controller('companies')
 export class CompaniesController {
@@ -25,10 +26,10 @@ export class CompaniesController {
   //   return this.companiesService.createCompany(createCompanyDto);
   // }
 
-  // @Get('/:id')
-  // getCompanyById(@Param('id') id: string): Company{
-  //   return this.companiesService.getCompanyById(id);
-  // }
+  @Get('/:id')
+  getCompanyById(@Param('id') id: string): Promise<Company> {
+    return this.companiesService.getCompanyById(id);
+  } 
 
   // @Delete('/:id')
   // deleteCompany(@Param('id') id: string): void {
