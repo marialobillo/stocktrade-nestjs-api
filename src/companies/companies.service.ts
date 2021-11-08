@@ -1,7 +1,6 @@
 import { GetCompanyFilterDto } from './dto/get-company-filter.dto';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class CompaniesService {
