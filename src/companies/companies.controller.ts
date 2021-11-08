@@ -3,45 +3,44 @@ import { GetCompanyFilterDto } from './dto/get-company-filter.dto';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { CompaniesService } from './companies.service';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
-import { Company } from './company.model';
 
 @Controller('companies')
 export class CompaniesController {
   constructor(private companiesService: CompaniesService) {}
 
-  @Get()
-  getCompanies(@Query() filterDto: GetCompanyFilterDto): Company[] {
+  // @Get()
+  // getCompanies(@Query() filterDto: GetCompanyFilterDto): Company[] {
 
-    if(Object.keys(filterDto).length){
-      return this.companiesService.getCompaniesWithFilters(filterDto);
-    } else {
-      return this.companiesService.getAllCompanies();
-    }
-  }
+  //   if(Object.keys(filterDto).length){
+  //     return this.companiesService.getCompaniesWithFilters(filterDto);
+  //   } else {
+  //     return this.companiesService.getAllCompanies();
+  //   }
+  // }
 
-  @Post()
-  createCompany(
-   @Body() createCompanyDto: CreateCompanyDto
-  ): Company {
-    return this.companiesService.createCompany(createCompanyDto);
-  }
+  // @Post()
+  // createCompany(
+  //  @Body() createCompanyDto: CreateCompanyDto
+  // ): Company {
+  //   return this.companiesService.createCompany(createCompanyDto);
+  // }
 
-  @Get('/:id')
-  getCompanyById(@Param('id') id: string): Company{
-    return this.companiesService.getCompanyById(id);
-  }
+  // @Get('/:id')
+  // getCompanyById(@Param('id') id: string): Company{
+  //   return this.companiesService.getCompanyById(id);
+  // }
 
-  @Delete('/:id')
-  deleteCompany(@Param('id') id: string): void {
-    return this.companiesService.deleteCompany(id);
-  }
+  // @Delete('/:id')
+  // deleteCompany(@Param('id') id: string): void {
+  //   return this.companiesService.deleteCompany(id);
+  // }
 
-  @Patch('/:id/name')
-  udpateCompanyName(
-    @Param('id') id: string, 
-    @Body() updateCompanyNameDto: UpdateCompanyNameDto,
-  ): Company {
-    const { name } = updateCompanyNameDto;
-    return this.companiesService.updateCompanyName(id, name);
-  }
+  // @Patch('/:id/name')
+  // udpateCompanyName(
+  //   @Param('id') id: string, 
+  //   @Body() updateCompanyNameDto: UpdateCompanyNameDto,
+  // ): Company {
+  //   const { name } = updateCompanyNameDto;
+  //   return this.companiesService.updateCompanyName(id, name);
+  // }
 }
