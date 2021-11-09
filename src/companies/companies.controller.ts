@@ -31,10 +31,10 @@ export class CompaniesController {
     return this.companiesService.getCompanyById(id);
   } 
 
-  // @Delete('/:id')
-  // deleteCompany(@Param('id') id: string): void {
-  //   return this.companiesService.deleteCompany(id);
-  // }
+  @Delete('/:id')
+  deleteCompany(@Param('id') id: string): Promise<void> {
+    return this.companiesService.deleteCompany(id);
+  }
 
   // @Patch('/:id/name')
   // udpateCompanyName(

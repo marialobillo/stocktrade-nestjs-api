@@ -67,6 +67,13 @@ export class CompaniesService {
     return this.companiesRepository.createCompany(createCompanyDto);
   }
 
+  async deleteCompany(id: string): Promise<void> {
+    const result = await this.companiesRepository.delete(id);
+    if(result.affected === 0){
+      throw new NotFoundException(`Company with ID "${id}" not found.`);
+    }
+  }
+
   // deleteCompany(id: string): void {
   //   const found = this.getCompanyById(id);
   //   this.companies = this.companies.filter(company => company.id !== found.id);
