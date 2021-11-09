@@ -24,13 +24,9 @@ export class CompaniesRepository extends Repository<Company> {
 
     const query = this.createQueryBuilder('company');
 
-    if(name){
-      query.andWhere('company.name LIKE :name', { name: `%${name}%` });
-    }
-
     if(search){
       query.andWhere(
-        'company.name LIKE :search OR company.symbol LIKE :search',
+        'LOWER(company.name) LIKE LOWER(:search) OR LOWER(company.symbol) LIKE LOWER(:search)',
         { search: `%${search}%`},
       );
     }
