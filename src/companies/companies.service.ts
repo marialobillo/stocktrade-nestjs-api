@@ -4,6 +4,7 @@ import { CreateCompanyDto } from './dto/create-company.dto';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Company } from './company.entity';
+import { filter } from 'rxjs';
 
 @Injectable()
 export class CompaniesService {
@@ -13,45 +14,11 @@ export class CompaniesService {
     private companiesRepository: CompaniesRepository,
   ){}
 
-  // getAllCompanies(): Company[] {
-  //   return this.companies;
-  // }
 
-  // getCompaniesWithFilters(filterDto: GetCompanyFilterDto): Company[] {
-  //   const { name, search } = filterDto;
+  getCompanies(filterDto: GetCompanyFilterDto): Promise<Company[]> {
+    return this.companiesRepository.getCompanies(filterDto);
+  }
 
-  //   let companies = this.getAllCompanies();
-
-  //   // do with name
-  //   if(name){
-  //     companies = companies.filter(company => company.name === name);
-  //   }
-
-  //   // do with search
-  //   if(search){
-  //     companies = companies.filter(company => {
-  //       if(company.name.includes(search) || company.symbol.includes(search)){
-  //         return true;
-  //       }
-  //       return false;
-  //     });
-  //   }
-
-  //   // return result
-  //   return companies;
-  // }
-
-  // createCompany(createCompanyDto: CreateCompanyDto): Company {
-  //   const { name, symbol } = createCompanyDto;
-  //   const company: Company = {
-  //     id: uuid(),
-  //     name,
-  //     symbol,
-  //   };
-
-  //   this.companies.push(company);
-  //   return company;
-  // }
 
   async getCompanyById(id: string): Promise<Company> {
 

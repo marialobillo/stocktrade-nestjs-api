@@ -9,15 +9,11 @@ import { Company } from './company.entity';
 export class CompaniesController {
   constructor(private companiesService: CompaniesService) {}
 
-  // @Get()
-  // getCompanies(@Query() filterDto: GetCompanyFilterDto): Company[] {
+  @Get()
+  getCompanies(@Query() filterDto: GetCompanyFilterDto): Promise<Company[]> {
 
-  //   if(Object.keys(filterDto).length){
-  //     return this.companiesService.getCompaniesWithFilters(filterDto);
-  //   } else {
-  //     return this.companiesService.getAllCompanies();
-  //   }
-  // }
+    return this.companiesService.getCompanies(filterDto);
+  }
 
   @Post()
   createCompany(
