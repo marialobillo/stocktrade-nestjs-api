@@ -36,12 +36,12 @@ export class CompaniesController {
     return this.companiesService.deleteCompany(id);
   }
 
-  // @Patch('/:id/name')
-  // udpateCompanyName(
-  //   @Param('id') id: string, 
-  //   @Body() updateCompanyNameDto: UpdateCompanyNameDto,
-  // ): Company {
-  //   const { name } = updateCompanyNameDto;
-  //   return this.companiesService.updateCompanyName(id, name);
-  // }
+  @Patch('/:id/name')
+  udpateCompanyName(
+    @Param('id') id: string, 
+    @Body() updateCompanyNameDto: UpdateCompanyNameDto,
+  ): Promise<Company> {
+    const { name } = updateCompanyNameDto;
+    return this.companiesService.updateCompanyName(id, name);
+  }
 }

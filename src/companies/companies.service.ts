@@ -74,14 +74,10 @@ export class CompaniesService {
     }
   }
 
-  // deleteCompany(id: string): void {
-  //   const found = this.getCompanyById(id);
-  //   this.companies = this.companies.filter(company => company.id !== found.id);
-  // }
-
-  // updateCompanyName(id: string, name: string): Company {
-  //   const company = this.getCompanyById(id);
-  //   company.name = name;
-  //   return company;
-  // }
+  async updateCompanyName(id: string, name: string): Promise<Company> {
+    const company = await this.getCompanyById(id);
+    company.name = name;
+    await this.companiesRepository.save(company);
+    return company;
+  }
 }
