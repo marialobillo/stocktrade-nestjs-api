@@ -55,12 +55,12 @@ export class CompaniesService {
 
   async getCompanyById(id: string): Promise<Company> {
 
-    const found = await this.companiesRepository.findOne(id);
+    const company = await this.companiesRepository.findOne(id);
 
-    if(!found){
+    if(!company){
       throw new NotFoundException(`Company with ID "${id}" not found.`);
     }
-    return found;
+    return company;
   }
 
   // deleteCompany(id: string): void {
