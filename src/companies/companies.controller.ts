@@ -11,7 +11,6 @@ export class CompaniesController {
 
   @Get()
   getCompanies(@Query() filterDto: GetCompanyFilterDto): Promise<Company[]> {
-
     return this.companiesService.getCompanies(filterDto);
   }
 
