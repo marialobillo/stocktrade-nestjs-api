@@ -63,6 +63,10 @@ export class CompaniesService {
     return company;
   }
 
+  createCompany(createCompanyDto: CreateCompanyDto): Promise<Company> {
+    return this.companiesRepository.createCompany(createCompanyDto);
+  }
+
   // deleteCompany(id: string): void {
   //   const found = this.getCompanyById(id);
   //   this.companies = this.companies.filter(company => company.id !== found.id);

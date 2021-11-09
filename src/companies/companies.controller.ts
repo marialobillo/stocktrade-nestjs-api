@@ -19,12 +19,12 @@ export class CompaniesController {
   //   }
   // }
 
-  // @Post()
-  // createCompany(
-  //  @Body() createCompanyDto: CreateCompanyDto
-  // ): Company {
-  //   return this.companiesService.createCompany(createCompanyDto);
-  // }
+  @Post()
+  createCompany(
+   @Body() createCompanyDto: CreateCompanyDto
+  ): Promise<Company> {
+    return this.companiesService.createCompany(createCompanyDto);
+  }
 
   @Get('/:id')
   getCompanyById(@Param('id') id: string): Promise<Company> {
