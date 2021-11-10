@@ -1,6 +1,6 @@
 import { GetHoldingFilterDto } from './dto/get-holding-filter.dto';
 import { HoldingsRepository } from './holdings.repository';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Holding } from './holding.model';
 import { v4 as uuid } from 'uuid';
 import { CreateHoldingDto } from './dto/create-holding.dto';
@@ -17,10 +17,16 @@ export class HoldingsService {
     return this.holdingsRepository.getHoldings(filterDto);
   }
 
-  // getAllHoldings(): Holding[] {
-  //   return this.holdings;
-  // }
+  async getHoldingById(id: string): Promise<Holding> {
+    const holding = await this.holdingsRepository.findOne(id);
 
+    if(!holding){
+      throw new NotFoundException(`Holding with ID "${id}" not found.`);
+    }
+    return holding;
+  }
+
+  
   // createHolding(createHoldingDto: CreateHoldingDto): Holding {
   //   const { companyId, userId, shares, priceBuy } = createHoldingDto;
   //   const holding: Holding = {
