@@ -16,7 +16,7 @@ export class HoldingsController {
     @Post()
     createHolding(
      @Body() createHoldingDto: CreateHoldingDto
-    ): Holding {
+    ): Promise<Holding> {
       return this.holdingsService.createHolding(createHoldingDto);
     }
 
