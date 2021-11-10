@@ -26,6 +26,10 @@ export class HoldingsService {
     return holding;
   }
 
+  createHolding(createHoldingDto: CreateHoldingDto): Promise<Holding> {
+    return this.holdingsRepository.createHolding(createHoldingDto);
+  }
+
   
   // createHolding(createHoldingDto: CreateHoldingDto): Holding {
   //   const { companyId, userId, shares, priceBuy } = createHoldingDto;
