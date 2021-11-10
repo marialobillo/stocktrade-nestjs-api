@@ -4,7 +4,6 @@ import { CreateCompanyDto } from './dto/create-company.dto';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Company } from './company.entity';
-import { filter } from 'rxjs';
 
 @Injectable()
 export class CompaniesService {
