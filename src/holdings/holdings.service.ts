@@ -31,30 +31,16 @@ export class HoldingsService {
   }
 
   
-  // createHolding(createHoldingDto: CreateHoldingDto): Holding {
-  //   const { companyId, userId, shares, priceBuy } = createHoldingDto;
-  //   const holding: Holding = {
-  //     id: uuid(),
-  //     companyId,
-  //     userId,
-  //     shares,
-  //     priceBuy,
-  //     dateBuy: new Date(),
-  //     isActive: true,
-  //     priceSell: 0,
-  //     dateSell: null,
-  //   };
-
-  //   this.holdings.push(holding);
-  //   return holding;
-  // }
+  async deleteHolding(id: string): Promise<void> {
+    const result = await this.holdingsRepository.delete(id);
+    if(result.affected === 0){
+      throw new NotFoundException(`Holding with ID "${id}" not found.`);
+    }
+  }
 
   // getHoldingById(id: string): Holding {
   //   return this.holdings.find((holding) => holding.id === id);
   // }
 
-  // deleteHolding(id: string): void {
-  //   this.holdings = this.holdings.filter(holding => holding.id !== id);
-  // }
 }
 
