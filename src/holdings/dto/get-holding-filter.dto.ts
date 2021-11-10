@@ -1,11 +1,7 @@
 import { IsOptional, IsString } from "class-validator";
 
-export class GetCompanyFilterDto {
-  @IsOptional()
+export class GetHoldingFilterDto {
+
   @IsString()
   userId?: string;
-
-  @IsOptional()
-  @IsString()
-  search?: string;
 }
