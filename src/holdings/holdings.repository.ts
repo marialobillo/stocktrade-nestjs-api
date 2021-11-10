@@ -45,5 +45,6 @@ export class HoldingsRepository extends Repository<Holding> {
     const holdings = await query.getMany();
     return holdings;
   }
+
 }
 
