@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Query } from '@nestjs/common';
 import { CreateHoldingDto } from './dto/create-holding.dto';
+import { GetHoldingFilterDto } from './dto/get-holding-filter.dto';
 import { Holding } from './holding.model';
 import { HoldingsService } from './holdings.service';
 
@@ -8,8 +9,8 @@ export class HoldingsController {
     constructor(private holdingsService: HoldingsService){}
 
     @Get()
-    getAllHoldings(): Holding[] {
-        return this.holdingsService.getAllHoldings();
+    getHoldings(@Query() filterDto: GetHoldingFilterDto): Promise<Holding[]> {
+        return this.holdingsService.getHoldings(filterDto);
     }
 
     @Post()
