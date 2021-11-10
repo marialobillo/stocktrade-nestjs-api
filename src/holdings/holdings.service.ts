@@ -38,9 +38,15 @@ export class HoldingsService {
     }
   }
 
-  // getHoldingById(id: string): Holding {
-  //   return this.holdings.find((holding) => holding.id === id);
-  // }
+
+  async updateHolding(id: string, priceSell: number, dateSell: Date): Promise<Holding> {
+    const holding = await this.getHoldingById(id);
+    holding.priceSell = priceSell;
+    holding.dateSell = dateSell;
+    holding.isActive = false;
+    await this.holdingsRepository.save(holding);
+    return holding;
+  }
 
 }
 
