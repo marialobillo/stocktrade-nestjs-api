@@ -37,6 +37,6 @@ export class HoldingsController {
       @Body() updateHoldingDto: UpdateHoldingDto,
     ): Promise<Holding> {
       const { priceSell, dateSell } = updateHoldingDto;
-      return this.holdingsService.updateHolding(id);
+      return this.holdingsService.updateHolding(id, priceSell, dateSell);
     }
 }
