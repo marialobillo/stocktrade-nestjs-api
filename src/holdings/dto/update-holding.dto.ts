@@ -1,5 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
-export class UpdateCompanyNameDto{
+export class UpdateHoldingDto{
   @IsNotEmpty()
   priceSell: number;
 
