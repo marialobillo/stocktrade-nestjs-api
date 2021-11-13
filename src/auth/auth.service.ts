@@ -8,5 +8,7 @@ export class AuthService {
     @InjectRepository(UsersRepository)
     private UsersRepository: UsersRepository
   ) {}
-  
+
+
+  async signUp()
 }
