@@ -2,6 +2,7 @@ import { CreateCompanyDto } from './dto/create-company.dto';
 import { EntityRepository, Repository } from "typeorm";
 import { Company } from "./company.entity";
 import { GetCompanyFilterDto } from './dto/get-company-filter.dto';
+import { ConflictException, InternalServerErrorException } from '@nestjs/common';
 
 @EntityRepository(Company)
 export class CompaniesRepository extends Repository<Company> {
@@ -14,7 +15,16 @@ export class CompaniesRepository extends Repository<Company> {
       symbol,
     });
 
-    await this.save(company);
+    try{
+      await this.save(company);
+    } catch(error){
+      if(error.code === '23505'){
+        throw new ConflictException('Symbol Company already exist.');
+      } else {
+        throw new InternalServerErrorException();
+      }
+    }
+
 
     return company;
   }

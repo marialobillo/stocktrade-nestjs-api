@@ -8,6 +8,6 @@ export class Company {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true})
   symbol: string;
 }
